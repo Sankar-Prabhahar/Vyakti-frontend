@@ -7,7 +7,8 @@ interface Message {
   sender: "user" | "agent";
   text: string;
 }
-const API_BASE = import.meta.env.VITE_API_URL || "${API_BASE}/chat";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 function App() {
   const [sessionId] = useState("web-session-1");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -27,9 +28,11 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8000/chat", {
+      const res = await axios.post(`${API_BASE}/chat`, {
+
         session_id: sessionId,
-        message: userText,
+          message: prompt,
+
       });
 
       setMessages((m) => [...m, { sender: "agent", text: res.data.reply }]);
