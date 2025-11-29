@@ -7,7 +7,7 @@ interface Message {
   sender: "user" | "agent";
   text: string;
 }
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_URL || "${API_BASE}/chat";
 function App() {
   const [sessionId] = useState("web-session-1");
   const [messages, setMessages] = useState<Message[]>([]);
