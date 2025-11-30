@@ -31,7 +31,7 @@ function App() {
       const res = await axios.post(`${API_BASE}/chat`, {
 
         session_id: sessionId,
-          message: prompt,
+          message: userText,
 
       });
 
